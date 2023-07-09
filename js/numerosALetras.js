@@ -88,12 +88,11 @@ function trio (num, txt = '', sing = ' ', unionplural = ' ') {
   if( num == 0) {return txt}
 
   let resultado = ''
-  if (num == 1) { return sing }
+  if (num == 1) { return sing + txt }
 
   resultado = centenas(num)
 
-  console.log('res: '+resultado);
-
+  //console.log('res: '+resultado);
   return resultado + unionplural + txt
 }
 
@@ -110,7 +109,7 @@ function numeroALetras (n, singular = "peso", plural = "pesos", centsing = "cent
   if (n == 0) { return 'cero pesos'}
 
   // obtener parte entera
-  if (ent == 1) { entlet = ' '+singular } else { entlet = ' '+plural }
+  if (ent == 1) { entlet = ' '+singular } else { entlet = plural }
 
   let xnum
   let xtrio
@@ -127,15 +126,15 @@ function numeroALetras (n, singular = "peso", plural = "pesos", centsing = "cent
     switch (cc){ // indica si es unidades, miles o millones 
       case 1:
         csing = 'un'
-        cplur = ''
+        cplur = ' '
         break
       case 2:
-        csing = 'mil'
-        cplur = 'mil'
+        csing = ' mil '
+        cplur = ' mil '
         break
       case 3:
-        csing = 'un millon'
-        cplur = 'millones'
+        csing = ' un millon '
+        cplur = ' millones '
         break
     }
     entlet = trio(xtrio, entlet, csing, cplur)
@@ -155,7 +154,7 @@ function numeroALetras (n, singular = "peso", plural = "pesos", centsing = "cent
 
 // instancio funciones
 numero = ingresarNumero()
-console.log('INIC: '+numero)
+//console.log('INIC: '+numero)
 numero = numeroALetras(numero)
-console.log('FIN: '+numero)
+//console.log('FIN: '+numero)
 alert('El resultado es: '+numero)
