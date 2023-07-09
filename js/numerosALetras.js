@@ -84,20 +84,17 @@ function centenas (num) {
 } // fin centenas() = "texto " + decenas(resto)
 
 
-function trio (num, cc = 1, txt = '') {
+function trio (num, txt = '', sing = ' ', unionplural = ' ') {
+  if( num == 0) {return txt}
 
-  if( num === 0) {return txt}
+  let resultado = ''
+  if (num == 1) { return sing }
 
-  let resto = Math.trunc(num/1000)
-  let trio = num - resto*1000
+  resultado = centenas(num)
 
-  txt = centenas(trio)
+  console.log('res: '+resultado);
 
-  console.log('trio '+trio);
-  console.log('resto '+resto);
-  console.log('cc '+cc);
-
-  return txt
+  return resultado + unionplural + txt
 }
 
 /* FUNCION: con el numero verificado obtener el texto
@@ -110,15 +107,47 @@ function numeroALetras (n, singular = "peso", plural = "pesos", centsing = "cent
   let entlet = ''
   let declet = ''
 
+  if (n == 0) { return 'cero pesos'}
+
   // obtener parte entera
   if (ent == 1) { entlet = ' '+singular } else { entlet = ' '+plural }
-  entlet = trio(ent) + entlet
+
+  let xnum
+  let xtrio
+  let cc = 0
+  let csing
+  let cplur
+  let xresto = ent
+    // ciclo trios
+  while (xresto != 0) {
+    cc++
+    xnum = xresto
+    xresto = Math.trunc(xnum/1000)
+    xtrio = xnum - xresto*1000
+    switch (cc){ // indica si es unidades, miles o millones 
+      case 1:
+        csing = 'un'
+        cplur = ''
+        break
+      case 2:
+        csing = 'mil'
+        cplur = 'mil'
+        break
+      case 3:
+        csing = 'un millon'
+        cplur = 'millones'
+        break
+    }
+    entlet = trio(xtrio, entlet, csing, cplur)
+  }
   // fin entero
 
   // obtner parte decimal
-  if (dec == 1) { declet = ' '+centsing } else { declet = ' '+centplural }
-  if (ent > 0) { entlet = entlet + ' con '} else { entlet = '' }
-  declet = decenas(dec) + declet
+  if (dec != 0) { 
+    if (dec == 1) { declet = ' '+centsing } else { declet = ' '+centplural }
+    if (ent > 0) { entlet = entlet + ' con '} else { entlet = '' }
+    declet = decenas(dec) + declet
+  }
   // fin decimal
 
   return entlet + declet
@@ -129,3 +158,4 @@ numero = ingresarNumero()
 console.log('INIC: '+numero)
 numero = numeroALetras(numero)
 console.log('FIN: '+numero)
+alert('El resultado es: '+numero)
