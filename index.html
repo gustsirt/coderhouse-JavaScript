@@ -23,7 +23,10 @@
   <main class="container main">
 
     <!-- MODELO -->
-    <div class="titulo2 my-3"><h2>Modelo de Pagare</h2></div>
+    <div class="titulo2 my-3 d-flex justify-content-between">
+      <h2>Modelo de Pagare</h2>
+      <input type="button" value="Imprimir" class="botonImprimir" onclick="imprimir()">
+    </div>
     <div class="modelo">
       <div class="modeloint">
         <div class="arriba">
@@ -64,7 +67,8 @@
         </div>
         <div class="input-group">
           <span class="input-group-text">Hasta el Nº:</span>
-          <input type="number" id="cHasta" class="form-control" aria-label="Indicar hasta que pagare necesitas" value="12">
+          <input type="number" id="cHasta" class="form-control" aria-label="Indicar hasta que pagare necesitas" value="12"
+          oninput="actualizarModelo('cHasta')">
         </div>
         <h3 class="my-3">Monto</h3>
         <div class="input-group">
@@ -72,7 +76,7 @@
           <input type="number" step="0.01" id="mMonto" class="form-control" aria-label="Indicar Monto de cada cuota" value="50000.00" oninput="actualizarModelo('mMonto')">
         </div>
       </div> <!-- fin Cantidad -->
-      <div class="col-lg-4 col-md-6"> <!-- Destinatario -->
+      <div class="col-lg-4 col-md-6"> <!-- Destinatario / fechas -->
         <h3 class="my-3">Cliente</h3>
         <div class="input-group">
           <span class="input-group-text">Apellido y Nombre:</span>
@@ -82,6 +86,10 @@
         <div class="input-group">
           <span class="input-group-text">Fecha Pagare:</span>
           <input type="date" id="fFecha" class="form-control" aria-label="Indicar Fecha del Pagare" oninput="actualizarModelo('fFecha')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Día Vencimiento:</span>
+          <input type="number" id="fDia" class="form-control" aria-label="Indicar día de Vencimiento" value="10" oninput="actualizarModelo('fDia')">
         </div>
         <div class="input-group">
           <span class="input-group-text">Fecha Vencimiento:</span>
@@ -108,13 +116,6 @@
         </div>
       </div> <!-- fin Firmante -->
     </div> <!-- fin info requerida -->
-
-
-
-
-
-    <!-- TITULO CONTENEDOR -->
-    <div class="titulo2"><h2>Modelo Generado</h2></div>
   </main>
 
   <!-- ! CONTENEDOR PAGARE - SI IMPRIMIBLE  -->

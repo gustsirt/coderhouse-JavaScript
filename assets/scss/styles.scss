@@ -78,6 +78,10 @@ p, input, label, li {
     }
   }
 }
+.botonImprimir {
+  width: 3cm;
+  font-size: large;
+}
 
 @media print {
   @page {     margin:1cm;}

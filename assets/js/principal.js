@@ -7,6 +7,7 @@ const datos = {
   mMonto: document.getElementById('mMonto'),
   dNombre: document.getElementById('dNombre'),
   fFecha: document.getElementById('fFecha'),
+  fDia: document.getElementById('fDia'),
   fVenc: document.getElementById('fVenc'),
   fFirmante: document.getElementById('fFirmante'),
   fDni: document.getElementById('fDni'),
@@ -30,22 +31,69 @@ const mdatos = {
   fTelefono: document.getElementById('mfTelefono')
 }
 
+// Estructura Generador
+const pagare = []
+
+// Contenedor
+const contenedor = document.getElementById('contenedor')
+
 // ? ***************** FUNCIONES *****************
 // funciones auxiliares
-function darUltimoDia (año, mes) {
-  return new Date(año, mes+1, 0).toISOString().split('T')[0]
-}
+
+function crearFecha(vfecha) {
+  vfecha = new Date(vfecha)
+  vfecha.setDate(vfecha.getDate() + 1)
+  return vfecha
+} //devuelve una fecha nueva (sin error 1 dia menos)
+
+function darFecha(fecha, modificador = 0){
+  // Ingresa: Sun Jul 30 2023 10:38:48 GMT-0300 (hora estándar de Argentina)
+  const year = fecha.getFullYear()
+  const month = String(fecha.getMonth() + 1).padStart(2, '0')
+  const day = String(fecha.getDate() + modificador).padStart(2, '0')
+  return `${year}-${month}-${day}` // Resultado: 2023-07-30
+} //para obtener el formato "YYYY-MM-DD"
+
+function darFechaCorta(fecha){
+  // Thu Aug 10 2023 21:00:00 GMT-0300 (hora estándar de Argentina)
+  // Resultado: 10/08/2023
+  return fecha.toLocaleDateString('es-AR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+} //para obtener el formato "DD-MM-YYYY"
+
+function darFechaLarga(fecha) {
+  // Ingresa: Sat Jul 29 2023 21:00:00 GMT-0300 (hora estándar de Argentina)
+  // Resultado: sábado, 29 de julio de 2023
+  return fecha.toLocaleDateString('es-ar', { weekday:"long", year:"numeric", month:"long", day:"numeric"})
+} //para obtener el formato "dddd, DD de mmm de YYYY"
+
+function darVencimiento(fecha, diavenc) {
+  // Ingresan: 2023-07-29 y 10
+  const fecha2 = new Date(fecha)
+  mes = fecha2.getMonth()
+  año = fecha2.getFullYear()
+  if (diavenc < fecha2.getDate) {
+    if(mes == 11){
+      mes = 0}
+    else{
+      mes++
+    }
+  }
+  // resultado: 2023-08-10
+  return darFecha(new Date(año, mes, diavenc))
+} // genera fecha Vencimiento posterior segun el día
 
 // ? ***************** INICIADORES *****************
-// Imput Date
+// Inicio las fechas a partir de fechaHoy
 const fechaHoy = new Date()
-datos.fFecha.value = fechaHoy.toISOString().split('T')[0]
-datos.fVenc.value = darUltimoDia(fechaHoy.getFullYear(), fechaHoy.getMonth())
+datos.fFecha.value = darFecha(fechaHoy)
+datos.fFecha.innerText = darFecha(fechaHoy)
 actualizarModelo('fFecha')
+datos.fVenc.value = darVencimiento(datos.fFecha.value,datos.fDia.value)
+datos.fVenc.innerText = darVencimiento(datos.fFecha.value,datos.fDia.value)
 actualizarModelo('fVenc')
 
-// ? ***************** ACATUALIZAR MODELO *****************
-
+// ? ***************** ACTUALIZAR MODELO *****************
+// TODO revisar la validacion de valores negativos y extraños
 function actualizarModelo(elemento) {
   // MODELO sin las excepciones (default)
   // mdatos[elemento].innerText = datos[elemento].value
@@ -53,25 +101,126 @@ function actualizarModelo(elemento) {
   switch (elemento) {
 
     case "mMonto":
-      mdatos["mMontol"].innerText = numeroALetras(datos[elemento].value); break;
+      mdatos["mMontol"].innerText = numeroALetras(datos[elemento].value);
+      break;
 
     case "fFecha":
-      let aux = datos["fFecha"].value
-      aux = new Date(aux)
-      aux.setDate(aux.getDate()+1)
-      aux = aux.toLocaleDateString('es-ar', { weekday:"long", year:"numeric", month:"long", day:"numeric"})
-      mdatos["fFecha"].innerText = aux
+      const nuevaFecha = new Date(datos["fFecha"].value);
+      mdatos["fFecha"].innerText = darFechaLarga(nuevaFecha);
+      datos["fFecha"].value = darFecha(nuevaFecha);
       break;
 
     case "fVenc":
-      let aux2 = datos["fVenc"].value
-      aux2 = new Date(aux2)
-      aux2.setDate(aux2.getDate()+1)
-      aux2 = aux2.toLocaleDateString('es-ar', {year:"numeric", month:"numeric", day:"numeric"})
-      mdatos["fVenc"].innerText = aux2
+      let xfVenc = crearFecha(datos.fVenc.value)
+
+      // actualiza modelo
+      mdatos.fVenc.value = darFecha(xfVenc)
+      mdatos.fVenc.innerText = darFechaCorta(xfVenc)
+
+      // asigna el Numero Dia Vencimiento
+      datos.fDia.value = xfVenc.getDate()
+      datos.fDia.innerText = xfVenc.getDate()
+      break;
+
+    case "fDia":
+      datos.fVenc.value = darVencimiento(datos.fFecha.value,datos.fDia.value)
+      actualizarModelo('fVenc')
+      break;
+
+    case "cTotal":
+      // si modifico Total puedo tener que modificar Hasta
+      if((parseInt(datos["cTotal"].value)-1) == parseInt(datos["cHasta"].value)) {
+        mdatos["cTotal"].innerText = datos["cTotal"].value;
+        datos["cHasta"].value = datos["cTotal"].value;
+        datos["cHasta"].innerText = datos["cTotal"].value;
+      } else {
+        mdatos["cTotal"].innerText = datos["cTotal"].value;
+      }
+
+    case "cHasta":
+      // si modifico Hasta puedo tener que modificar Total
+      if(parseInt(datos["cHasta"].value) > parseInt(datos["cTotal"].value)) {
+        datos["cHasta"].value = datos["cTotal"].value;
+        datos["cHasta"].innerText = datos["cTotal"].value;
+      }
       break;
 
     default:
       mdatos[elemento].innerText = datos[elemento].value; break;
   }
+}
+
+// ? ***************** GENERADOR *****************
+function generador(){
+  pagare.length = 0 // vacia array
+
+  // calcula: sábado, 29 de julio de 2023
+  const nuevaFecha = darFechaLarga(crearFecha(datos["fFecha"].value));
+
+  // fecha referencia para ir cambiando meses
+  afVencRef = crearFecha(datos.fVenc.value) // debe variar
+  // darFechaCorta(afVencRef) -- calcula: 10/8/2023 pero se lo hace en el ciclo
+
+  // genera arreglo datos
+  for (let i = parseInt(datos.cDesde.value); i <= parseInt(datos.cHasta.value); i++) {
+    pagare.push({
+      cTotal: datos['cTotal'].value,
+      cDesde: i, // varia segun pagare
+      mMonto: datos['mMonto'].value,
+      mMontol: numeroALetras(datos['mMonto'].value),
+      dNombre: adNombre = datos['dNombre'].value,
+      fFecha: nuevaFecha,
+      fVenc: darFechaCorta(afVencRef), // varia - cada pagare aumenta 1 mes
+      fFirmante: datos['fFirmante'].value,
+      fDni: datos['fDni'].value,
+      fDireccion: datos['fDireccion'].value,
+      fTelefono: datos['fTelefono'].value
+    })
+
+    // al termianr varia Fecha Vencimiento un mes
+    afVencRef.setMonth(afVencRef.getMonth()+1)
+  }
+
+  let ahtmlmodelo = `` // ${}
+
+  // Arma el Pagare
+  pagare.forEach( (hoja) => {
+    ahtmlmodelo += `
+    <div class="modelo">
+      <div class="modeloint">
+        <div class="arriba">
+          <div class="renglon1"> <!-- Pagare Nº 1 de 10 || Vence el 10/08/2023-->
+            <p>Pagare Nº <span id="mcDesde">${hoja.cDesde}</span>
+              de <span id="mcTotal">${hoja.cTotal}</span></p>
+            <p>Vence el <span id="mfVenc">${hoja.fVenc}</span></p>
+          </div>
+          <div class="renglon2"> <!-- Monto: $ 50.000,00 -->
+            <p>Monto: $ <span id="mmMonto">${hoja.mMonto}</span></p>
+          </div>
+        </div>
+        <div class="medio"> <!-- CORDOBA Jueves 27 de Junio de 2023 PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor Destinatario a su orden la cantidad de pesos argentino cincuenta mil -->
+          <p>CORDOBA <span id="mfFecha">${hoja.fFecha}</span> PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor <span id="mdNombre">${hoja.dNombre}</span> a su orden la cantidad de <span id="mmMontol">${hoja.mMontol}</span></p>
+        </div>
+        <div class="abajo"> <!-- Firmante: Señor Firmante ... -->
+          <ul>
+            <li>Firmante: <span id="mfFirmante">${hoja.fFirmante}</span></li>
+            <li>DNI: <span id="mfDni">${hoja.fDni}</span></li>
+            <li>Dirección: <span id="mfDireccion">${hoja.fDireccion}</span></li>
+            <li>Telefono: <span id="mfTelefono">${hoja.fTelefono}</span></li>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- fin modelo -->
+    `
+  } )
+  
+  return ahtmlmodelo
+}
+
+// ? ***************** IMPRIMIR PAGARE *****************
+// se deja por fuera por si se necesita realizar tareas previas a imprimir
+function imprimir() {
+  const htmlmodelo = generador()
+  contenedor.innerHTML = htmlmodelo
+  window.print()
 }
