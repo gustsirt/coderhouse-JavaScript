@@ -181,7 +181,7 @@ function generador(){
     afVencRef.setMonth(afVencRef.getMonth()+1)
   }
 
-  let ahtmlmodelo = `` // ${}
+  let ahtmlmodelo = `` // ${hoja}
 
   // Arma el Pagare
   pagare.forEach( (hoja) => {
@@ -189,24 +189,32 @@ function generador(){
     <div class="modelo">
       <div class="modeloint">
         <div class="arriba">
-          <div class="renglon1"> <!-- Pagare Nº 1 de 10 || Vence el 10/08/2023-->
+          <div class="renglon1">
             <p>Pagare Nº <span id="mcDesde">${hoja.cDesde}</span>
               de <span id="mcTotal">${hoja.cTotal}</span></p>
             <p>Vence el <span id="mfVenc">${hoja.fVenc}</span></p>
           </div>
-          <div class="renglon2"> <!-- Monto: $ 50.000,00 -->
-            <p>Monto: $ <span id="mmMonto">${hoja.mMonto}</span></p>
+          <div class="renglon2"> <!-- POR: $ 50.000,00 -->
+            <p><strong>POR:</strong> $ <span id="mmMonto">${hoja.mMonto}</span></p>
           </div>
         </div>
-        <div class="medio"> <!-- CORDOBA Jueves 27 de Junio de 2023 PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor Destinatario a su orden la cantidad de pesos argentino cincuenta mil -->
-          <p>CORDOBA <span id="mfFecha">${hoja.fFecha}</span> PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor <span id="mdNombre">${hoja.dNombre}</span> a su orden la cantidad de <span id="mmMontol">${hoja.mMontol}</span></p>
+        <div class="medio">
+          <p>CORDOBA <span id="mfFecha">${hoja.fFecha}</span> <strong>PAGARÉ SIN PROTESTO</strong> (art. 50 D. Ley 5965/63) al señor <span id="mdNombre">${hoja.dNombre}</span> a su orden la cantidad de <span id="mmMontol">${hoja.mMontol}</span></p>
         </div>
-        <div class="abajo"> <!-- Firmante: Señor Firmante ... -->
-          <ul>
-            <li>Firmante: <span id="mfFirmante">${hoja.fFirmante}</span></li>
-            <li>DNI: <span id="mfDni">${hoja.fDni}</span></li>
-            <li>Dirección: <span id="mfDireccion">${hoja.fDireccion}</span></li>
-            <li>Telefono: <span id="mfTelefono">${hoja.fTelefono}</span></li>
+        <div class="abajo">
+          <ul class="listalabel">
+            <li>Firma: </li>
+            <li>Firmante: </li>
+            <li>DNI: </li>
+            <li>Dirección: </li>
+            <li>Teléfono: </li>
+          </ul>
+          <ul class="listadatos">
+            <li><span>...................................................... </span></li>
+            <li><span id="mfFirmante">${hoja.fFirmante}</span></li>
+            <li><span id="mfDni">${hoja.fDni}</span></li>
+            <li><span id="mfDireccion">${hoja.fDireccion}/span></li>
+            <li><span id="mfTelefono">${hoja.fTelefono}</span></li>
           </ul>
         </div>
       </div>

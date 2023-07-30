@@ -24,9 +24,12 @@
 
     <!-- MODELO -->
     <div class="titulo2 my-3 d-flex justify-content-between">
-      <h2>Modelo de Pagare</h2>
+      <div>
+        <h2>Modelo de Pagare</h2>
+      </div>
       <input type="button" value="Imprimir" class="botonImprimir" onclick="imprimir()">
     </div>
+    <p>NOTA: Para poder imprimir el color del borde, en la impresión hay que habilitar la opción: Mas opciones --> "Gráficos en segundo plano"</p>
     <div class="modelo">
       <div class="modeloint">
         <div class="arriba">
@@ -35,19 +38,27 @@
               de <span id="mcTotal">12</span></p>
             <p>Vence el <span id="mfVenc">10/08/2023</span></p>
           </div>
-          <div class="renglon2"> <!-- Monto: $ 50.000,00 -->
-            <p>Monto: $ <span id="mmMonto">50.000,00</span></p>
+          <div class="renglon2"> <!-- POR: $ 50.000,00 -->
+            <p><strong>POR:</strong> $ <span id="mmMonto">50.000,00</span></p>
           </div>
         </div>
         <div class="medio"> <!-- CORDOBA Jueves 27 de Junio de 2023 PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor Destinatario a su orden la cantidad de pesos argentino cincuenta mil -->
-          <p>CORDOBA <span id="mfFecha">Jueves 27 de Junio de 2023</span> PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor <span id="mdNombre">Destinatario</span> a su orden la cantidad de <span id="mmMontol">cincuenta mil pesos</span></p>
+          <p>CORDOBA <span id="mfFecha">Jueves 27 de Junio de 2023</span> <strong>PAGARÉ SIN PROTESTO</strong> (art. 50 D. Ley 5965/63) al señor <span id="mdNombre">Destinatario</span> a su orden la cantidad de <span id="mmMontol">cincuenta mil pesos</span></p>
         </div>
         <div class="abajo"> <!-- Firmante: Señor Firmante ... -->
-          <ul>
-            <li>Firmante: <span id="mfFirmante">Señor Firmante</span></li>
-            <li>DNI: <span id="mfDni">12345678</span></li>
-            <li>Dirección: <span id="mfDireccion">Calle Ejemplo 1234</span></li>
-            <li>Telefono: <span id="mfTelefono">0351-1234567</span></li>
+          <ul class="listalabel">
+            <li>Firma: </li>
+            <li>Firmante: </li>
+            <li>DNI: </li>
+            <li>Dirección: </li>
+            <li>Teléfono: </li>
+          </ul>
+          <ul class="listadatos">
+            <li><span>...................................................... </span></li>
+            <li><span id="mfFirmante">Señor Firmante</span></li>
+            <li><span id="mfDni">12345678</span></li>
+            <li><span id="mfDireccion">Calle Ejemplo 1234</span></li>
+            <li><span id="mfTelefono">0351-1234567</span></li>
           </ul>
         </div>
       </div>
