@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
     // evita que accedas a otra pagina
     let currentPagePath = window.location.href.split('/').pop();
     if (currentPagePath != "index.html") {
-      window.location.href = "../../index.html"
+      window.location.href = "/index.html"
     } 
   }
 })
