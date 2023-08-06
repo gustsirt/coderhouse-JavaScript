@@ -1,0 +1,40 @@
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabla-g{
+  @extend .flex-col-center;
+
+
+  background-color: $clig2;
+  padding: 2em;
+  margin: 1.5em;
+  border-radius: 30px;
+
+  .agregar-datos {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    div {
+      @extend .flex-col-center;
+
+      #agregarCliente {
+        width: 100px;
+      }
+    }
+  }
+  p {
+    font-style: italic;
+    margin-top: 1em;
+    margin-bottom: 0;
+  }
+
+  table{
+    margin: 0;
+  }
+}
+
+
+

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes</title>
+  <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  
+  <!-- Librerias -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> <!-- bootstrap -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- boxicons ico -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/styles.css" />
+</head>
+
+<body>
+  <!-- =======  HEADER - NO IMPRIMIBLE ======= -->
+  <header class="header">
+    <div class="titulo1">
+        <a href="../index.html"><img src="../assets/img/logo.jpg" alt="Logo Empresa"></a>
+        <h1>Clientes</h1>
+        <div class="user-header">
+          <p>Usuario:</p>
+          <p id="logUsuario"></p>
+        </div>
+    </div>
+    <nav id="nav" class="nav">
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="./pagares.html">Pagare</a></li>
+        <li class="active"><a href="./clientes.html">Clientes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======= MAIN - NO IMPRIMIBLE ======= -->
+  <main class="container main">
+
+    <!-- Titulo y Agregar datos-->
+    <section class="tabla-g">
+      <h2>Agregar datos</h2>
+      <div class="agregar-datos">
+        <div>
+          <label for="cDNI">DNI:</label>
+          <input type="number" id="cDNI">
+        </div>
+        <div>
+          <label for="cNombre">Apellido y Nombre:</label>
+          <input type="text" id="cNombre">
+        </div>
+        <div>
+          <label for="cCelular">Celular:</label>
+          <input type="text" id="cCelular">
+        </div>
+        <div>
+          <input id="agregarCliente" type="button" value="Agregar">
+        </div>
+      </div>
+      <p id="agregarMensaje"></p>
+    </section>
+
+    <section class="tabla-g tabla-datos d-flex flex-col-center">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Apellido y Nombre</th>
+            <th scope="col">Celular</th>
+            <th scope="col"><i class='bx bx-edit-alt'></i></th>
+            <th scope="col"><i class='bx bx-message-square-x'></i></th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoClientes">
+          <!-- <tr>
+            <th scope="row">1</th>
+            <td>32112345</td>
+            <td>Mark</td>
+            <td>351-3214567</td>
+            <td><input type="button" value="xxx"></td>
+          </tr>  -->
+        </tbody>
+      </table>
+    </section>
+  </main> <!-- fin main -->
+
+
+
+  <!-- ======= FOOTER - NO IMPRIMIBLE ======= -->
+  <footer class="footer">
+    <div class="container">
+      <p class="title">Sistema X</p>
+      <p class="descrip"></p>
+      <div class="social-links">
+        <a href="https://wa.me/5493541613185?text=Hola.%20Me%20gustaría%20contactarme%20contigo" target="_blank" cclass="">
+          <i class='bx bxl-whatsapp'></i></a>
+        <a href="https://www.facebook.com/gustavoandres.sirtori/" target="_blank" class="">
+          <i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" class="">
+          <i class="bx bxl-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/gustavoandressirtori/" target="_blank" cclass="">
+          <i class="bx bxl-linkedin"></i></a>
+        <a href="mailto:gustavo.sirtori@gmail.com" target="_blank" cclass="">
+          <i class='bx bxl-gmail'></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <span id="copyyear"></span><span class="pstr"> Sirtori Gustavo</span>. Todos los derechos reservados
+      </div>
+      
+    </div>
+  </footer><!-- End Footer -->
+
+  <!-- SCRIPS -->
+  <script src="../assets/js/usuario.js"></script>
+  <script src="../assets/js/principal.js"></script>
+  <script src="../assets/js/clientes.js"></script>
+  
+
+  <!-- VENDORS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

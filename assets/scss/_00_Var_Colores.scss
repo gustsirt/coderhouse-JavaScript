@@ -2,6 +2,7 @@
 $color0: red; //blue, green, orange, red, grey
 $color: #fff; // color principal
 $cligt: #fff; // color claro
+$clig2: #fff; // color claro - suave
 $copcn: #fff; // color opcional (destaca del principal)
 $cstrg: #fff; // color fuerte
 $cdegr: #fff; // degradado simple
@@ -28,6 +29,7 @@ $c-roj1:   #f01212;
 $c-roj2:   #f28d8d;
 $c-roj3:   #940404;
 $c-roj4:   #4f0201;
+$c-roj5:   #ecc1c1;
 $c-rojdeg1: linear-gradient(to right, rgba(213,0,19,1) 0%,rgba(165,0,22,0.96) 81%,rgba(165,0,22,0.95) 99%);
 $c-gris1:  #45505b;
 $c-gris1-80:  #45505bcc;
@@ -53,6 +55,7 @@ $c-gris3:  #92959a;
 } @else if $color0 == red{
   $color: $c-roj1;
   $cligt: $c-roj2;
+  $clig2: $c-roj5;
   $copcn: $c-roj3;
   $cstrg: $c-roj4;
   $cdegr: $c-rojdeg1;

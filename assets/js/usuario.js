@@ -1,3 +1,5 @@
+// ? ***************** VARIABLES *****************
+
 const usuariologueado = {
   id: -1, // si esta registrado debe ser >= 0
   logUsuario: document.getElementById('logUsuario')
@@ -18,6 +20,8 @@ usuarios =[
   },
 ]
 
+// ? ***************** EVENTOS *****************
+
 // verifica Si esta Logueado
 window.addEventListener('load', () => {
   usuariologueado.id = ( localStorage.getItem("user") ?? -1)
@@ -28,11 +32,14 @@ window.addEventListener('load', () => {
   } else {
     logUsuario.innerText = "--"
 
-    // ! evita que accedas a otra pagina (me fallo)
+    // oculta barra de navegación
+    document.getElementById('nav').classList.add('ocultar-nav')
+
+    // ! evita que accedas a otra pagina (no anfa en github)
     let currentPagePath = window.location.href.split('/').pop();
     if (currentPagePath != "index.html") {
-    //  console.log(currentPagePath, "Se espera llegar a: ../index.html");
-      window.location.href = "../index.html"
+      console.log("window.location.href = '../index.html'");
+    //  window.location.href = "../index.html"
     } 
   }
 })

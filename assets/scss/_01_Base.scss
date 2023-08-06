@@ -1,0 +1,7 @@
+// solo se plica si no esta logueado
+.ocultar-nav {
+  height: 10px;
+  ul{
+    visibility: hidden;
+  }
+}
