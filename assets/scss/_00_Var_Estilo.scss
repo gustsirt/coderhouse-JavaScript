@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// General
+$f-title: 'Montserrat'; // sans-serif
+$f-alternative: 'Raleway'; // sans-serif
+$f-general: 'Poppins'; // sans-serif
+$f-h1-size: 3rem;
+$f-h2-size: 2rem;
+$f-h3-size: 1.5rem;
+$f-h4-size: 1rem;
+$f-body-font-size: 0.875rem;
+
+// Para imprimir
+$f-h1-size-p: 18pt;
+$f-h2-size-p: 14pt;
+$f-h3-size-p: 12pt;
+$f-h4-size-p: 10pt;
+$f-body-font-size-p: 10pt;
+
+h1, h2, h3, h4{ font-family: $f-title, sans-serif; }
+
+p, li, a, label, input, button {
+  font-family: $f-general, sans-serif;
+  font-size: $f-body-font-size;
+  color: $c-negro;
+}
+a, a:hover {
+  text-decoration: none;;
+}
+
+@media print {
+  p, li, a, label, input, button {
+    font-size: $f-body-font-size-p;
+  }
+}

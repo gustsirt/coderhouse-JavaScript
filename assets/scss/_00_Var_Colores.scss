@@ -1,0 +1,64 @@
+// Definir gama de colores a usar
+$color0: red; //blue, green, orange, red, grey
+$color: #fff; // color principal
+$cligt: #fff; // color claro
+$copcn: #fff; // color opcional (destaca del principal)
+$cstrg: #fff; // color fuerte
+$cdegr: #fff; // degradado simple
+
+// Definicion de Gama de colores
+$c-negro:  #0d0d0d;
+$c-negro2: #272829;
+$c-blanco: #d9d9d9;
+$c-blancor: white;
+$c-blancor-70: #ffffffb3;
+$c-nar1:   #e88300;
+$c-nar2:   #f2C08d;
+$c-nar3:   #a66503;
+$c-nar4:   #603b03;
+$c-ver1:   #11f05f;
+$c-ver2:   #8df2a6;
+$c-ver3:   #446f02;
+$c-ver4:   #335203;
+$c-azu1:   #3b12f0;
+$c-azu2:   #8d90f2;
+$c-azu3:   #0563bb;
+$c-azu4:   #022963;
+$c-roj1:   #f01212;
+$c-roj2:   #f28d8d;
+$c-roj3:   #940404;
+$c-roj4:   #4f0201;
+$c-rojdeg1: linear-gradient(to right, rgba(213,0,19,1) 0%,rgba(165,0,22,0.96) 81%,rgba(165,0,22,0.95) 99%);
+$c-gris1:  #45505b;
+$c-gris1-80:  #45505bcc;
+$c-gris2:  #f2f3f5;
+$c-gris3:  #92959a;
+
+// Formula que establece la gama
+@if $color0 == blue {
+  $color: $c-azu1;
+  $cligt: $c-azu2;
+  $copcn: $c-azu3;
+  $cstrg: $c-azu4;
+} @else if $color0 == orange{
+  $color: $c-nar1;
+  $cligt: $c-nar2;
+  $copcn: $c-nar3;
+  $cstrg: $c-nar4;
+} @else if $color0 == green{
+  $color: $c-ver1;
+  $cligt: $c-ver2;
+  $copcn: $c-ver3;
+  $cstrg: $c-ver4;
+} @else if $color0 == red{
+  $color: $c-roj1;
+  $cligt: $c-roj2;
+  $copcn: $c-roj3;
+  $cstrg: $c-roj4;
+  $cdegr: $c-rojdeg1;
+} @else {
+  $color: $c-negro2;
+  $cligt: $c-gris2;
+  $copcn: $c-gris1;
+  $cstrg: $c-gris3;
+}

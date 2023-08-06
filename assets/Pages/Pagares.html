@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagares Imprimibles</title>
+  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+  
+  <!-- Librerias -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> <!-- bootstrap -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- boxicons ico -->
+  <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+</head>
+
+<body>
+  <!-- =======  HEADER - NO IMPRIMIBLE ======= -->
+  <header class="header">
+    <div class="titulo1">
+        <a href="../../index.html"><img src="../img/logo.jpg" alt="Logo Empresa"></a>
+        <h1>Modelo Pagare a Imprimir</h1>
+        <div class="user-header">
+          <p>Usuario:</p>
+          <p id="logUsuario"></p>
+        </div>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="../../index.html">Inicio</a></li>
+        <li class="active"><a href="./Pagares.html">Pagare</a></li>
+        <li><a href="./Clientes.html">Clientes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======= MAIN - NO IMPRIMIBLE ======= -->
+  <main class="container main">
+
+    <!-- MODELO -->
+    <div class="titulo2 my-3 d-flex justify-content-between">
+      <div>
+        <h2>Modelo de Pagare</h2>
+      </div>
+      <input type="button" value="Imprimir" class="botonImprimir" onclick="imprimir()">
+    </div>
+    <p>NOTA: Para poder imprimir el color del borde, en la impresión hay que habilitar la opción: Mas opciones --> "Gráficos en segundo plano"</p>
+    <div class="modelo">
+      <div class="modeloint">
+        <div class="arriba">
+          <div class="renglon1"> <!-- Pagare Nº 1 de 10 || Vence el 10/08/2023-->
+            <p>Pagare Nº <span id="mcDesde">1</span>
+              de <span id="mcTotal">12</span></p>
+            <p>Vence el <span id="mfVenc">10/08/2023</span></p>
+          </div>
+          <div class="renglon2"> <!-- POR: $ 50.000,00 -->
+            <p><strong>POR:</strong> $ <span id="mmMonto">50.000,00</span></p>
+          </div>
+        </div>
+        <div class="medio"> <!-- CORDOBA Jueves 27 de Junio de 2023 PAGARÉ SIN PROTESTO (art. 50 D. Ley 5965/63) al señor Destinatario a su orden la cantidad de pesos argentino cincuenta mil -->
+          <p>CORDOBA <span id="mfFecha">Jueves 27 de Junio de 2023</span> <strong>PAGARÉ SIN PROTESTO</strong> (art. 50 D. Ley 5965/63) al señor <span id="mdNombre">Destinatario</span> a su orden la cantidad de <span id="mmMontol">cincuenta mil pesos</span></p>
+        </div>
+        <div class="abajo"> <!-- Firmante: Señor Firmante ... -->
+          <ul class="listalabel">
+            <li>Firma: </li>
+            <li>Firmante: </li>
+            <li>DNI: </li>
+            <li>Dirección: </li>
+            <li>Teléfono: </li>
+          </ul>
+          <ul class="listadatos">
+            <li><span>...................................................... </span></li>
+            <li><span id="mfFirmante">Señor Firmante</span></li>
+            <li><span id="mfDni">12345678</span></li>
+            <li><span id="mfDireccion">Calle Ejemplo 1234</span></li>
+            <li><span id="mfTelefono">0351-1234567</span></li>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- fin modelo -->
+
+    <!-- INFO REQUERIDA -->
+    <div class="row my-5">
+      <div class="col-lg-4 col-md-6"> <!-- Cantidad -->
+        <h3 class="my-3">Cantidad</h3>
+        <div class="input-group">
+          <span class="input-group-text">En total son:</span>
+          <input type="number" id="cTotal" class="form-control" aria-label="Indicar total de Pagares" value="12" oninput="actualizarModelo('cTotal')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Desde el Nº:</span>
+          <input type="number" id="cDesde" class="form-control" aria-label="Indicar desde que pagare necesitas" value="1" oninput="actualizarModelo('cDesde')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Hasta el Nº:</span>
+          <input type="number" id="cHasta" class="form-control" aria-label="Indicar hasta que pagare necesitas" value="12"
+          oninput="actualizarModelo('cHasta')">
+        </div>
+        <h3 class="my-3">Monto</h3>
+        <div class="input-group">
+          <span class="input-group-text">Monto:</span>
+          <input type="number" step="0.01" id="mMonto" class="form-control" aria-label="Indicar Monto de cada cuota" value="50000.00" oninput="actualizarModelo('mMonto')">
+        </div>
+      </div> <!-- fin Cantidad -->
+      <div class="col-lg-4 col-md-6"> <!-- Destinatario / fechas -->
+        <h3 class="my-3">Cliente</h3>
+        <div class="input-group">
+          <span class="input-group-text">Apellido y Nombre:</span>
+          <input type="text" id="dNombre" class="form-control" aria-label="Indicar nombre y apellido del cliente" value="Destinatario" oninput="actualizarModelo('dNombre')">
+        </div>
+        <h3 class="my-3">Fechas</h3>
+        <div class="input-group">
+          <span class="input-group-text">Fecha Pagare:</span>
+          <input type="date" id="fFecha" class="form-control" aria-label="Indicar Fecha del Pagare" oninput="actualizarModelo('fFecha')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Día Vencimiento:</span>
+          <input type="number" id="fDia" class="form-control" aria-label="Indicar día de Vencimiento" value="10" oninput="actualizarModelo('fDia')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Fecha Vencimiento:</span>
+          <input type="date" id="fVenc" class="form-control" aria-label="Indicar Fecha de Vencimiento" oninput="actualizarModelo('fVenc')">
+        </div>
+      </div> <!-- fin Destinatario -->
+      <div class="col-lg-4 col-md-12"> <!-- Firmante -->
+        <h3 class="my-3">Proveedor</h3>
+        <div class="input-group">
+          <span class="input-group-text">Apellido y Nombre:</span>
+          <input type="text" id="fFirmante" class="form-control" aria-label="Indicar nombre y apellido del proveedor" value="Señor Firmante" oninput="actualizarModelo('fFirmante')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">CUIT o DNI:</span>
+          <input type="text" id="fDni" class="form-control" aria-label="Indcar DNI o CUIT del proveedor" value="12345678" oninput="actualizarModelo('fDni')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Dirección:</span>
+          <input type="text" id="fDireccion" class="form-control" aria-label="Indicar dirección del proveedor" value="Calle Ejemplo 1234" oninput="actualizarModelo('fDireccion')">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Teléfono:</span>
+          <input type="text" id="fTelefono" class="form-control" aria-label="Indicar teléfono del proveedor" value="0351-1234567" oninput="actualizarModelo('fTelefono')">
+        </div>
+      </div> <!-- fin Firmante -->
+    </div> <!-- fin info requerida -->
+  </main> <!-- fin main -->
+
+  <!-- ! CONTENEDOR PAGARE - SI IMPRIMIBLE  -->
+  <section class="pagares" id="contenedor">
+  </section>
+
+      <!-- ======= FOOTER - NO IMPRIMIBLE ======= -->
+      <footer class="footer">
+        <div class="container">
+          <p class="title">Sistema X</p>
+          <p class="descrip"></p>
+          <div class="social-links">
+            <a href="https://wa.me/5493541613185?text=Hola.%20Me%20gustaría%20contactarme%20contigo" target="_blank" cclass="">
+              <i class='bx bxl-whatsapp'></i></a>
+            <a href="https://www.facebook.com/gustavoandres.sirtori/" target="_blank" class="">
+              <i class="bx bxl-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" class="">
+              <i class="bx bxl-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/gustavoandressirtori/" target="_blank" cclass="">
+              <i class="bx bxl-linkedin"></i></a>
+            <a href="mailto:gustavo.sirtori@gmail.com" target="_blank" cclass="">
+              <i class='bx bxl-gmail'></i></a>
+          </div>
+          <div class="copyright">
+            &copy; Copyright <span id="copyyear"></span><span class="pstr"> Sirtori Gustavo</span>. Todos los derechos reservados
+          </div>
+          
+        </div>
+      </footer><!-- End Footer -->
+
+  <!-- SCRIPS -->
+  <script src="../js/usuario.js"></script>
+  <script src="../js/principal.js"></script>
+  <script src="../js/numerosALetras.js"></script>
+  <script src="../js/pagare.js"></script>
+
+  <!-- VENDORS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

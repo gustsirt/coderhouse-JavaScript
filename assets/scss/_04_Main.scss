@@ -1,0 +1,18 @@
+h2 { margin-bottom: 15px; }
+
+.botones{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 400px;
+
+  .btn {
+    background-color: $copcn;
+    color: $cligt
+  }
+  .btn:hover {
+    background-color: $cstrg;
+  }
+}
