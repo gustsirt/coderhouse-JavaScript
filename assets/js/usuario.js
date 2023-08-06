@@ -28,11 +28,11 @@ window.addEventListener('load', () => {
   } else {
     logUsuario.innerText = "--"
 
-    // evita que accedas a otra pagina (me fallo)
+    // ! evita que accedas a otra pagina (me fallo)
     let currentPagePath = window.location.href.split('/').pop();
     if (currentPagePath != "index.html") {
-      console.log(currentPagePath, "Se espera llegar a: ../index.html");
-    //  window.location.href = "../index.html"
+    //  console.log(currentPagePath, "Se espera llegar a: ../index.html");
+      window.location.href = "../index.html"
     } 
   }
 })
@@ -42,7 +42,7 @@ verif = document.getElementById('formularioVal')
 // primero verifica si existe el formularios
 if(verif||false) {
   verif.addEventListener('submit', (e) => {
-    e.preventDefault(); // evita que reinicie formulario
+    // e.preventDefault(); // evita que reinicie formulario
     let aux = 0 // 1 = aceptado
     // revisa array a ver si existe 
     usuarios.forEach(regist => {
