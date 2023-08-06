@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
     // evita que accedas a otra pagina (me fallo)
     let currentPagePath = window.location.href.split('/').pop();
     if (currentPagePath != "index.html") {
-      console.log(currentPagePath, "Se espera llegar a: ../../index.html");
+      console.log(currentPagePath, "Se espera llegar a: ../index.html");
     //  window.location.href = "../index.html"
     } 
   }
