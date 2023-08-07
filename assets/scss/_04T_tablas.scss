@@ -20,8 +20,9 @@
     div {
       @extend .flex-col-center;
 
-      #agregarCliente {
+      button {
         width: 100px;
+        border: none;
       }
     }
   }
@@ -33,6 +34,21 @@
 
   table{
     margin: 0;
+    tbody {
+      td {
+        button {
+          width: 1.8em;
+          height: 1.8em;
+          border-radius: 50%;
+          border: none;
+          background-color: $cligt;
+        }
+        button:hover {
+          color: $cligt;
+          background-color: $color;
+        }
+      }
+    }
   }
 }
 

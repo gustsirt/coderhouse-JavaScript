@@ -53,13 +53,17 @@
           <input type="text" id="cCelular">
         </div>
         <div>
-          <input id="agregarCliente" type="button" value="Agregar">
+          <button id="agregarCliente"><i class='bx bx-add-to-queue'></i> Agregar</button>
+          <button id="modificarCliente"><i class='bx bx-edit-alt'></i> Modificar</button>
         </div>
       </div>
       <p id="agregarMensaje"></p>
     </section>
 
     <section class="tabla-g tabla-datos d-flex flex-col-center">
+      <div> <!-- botones -->
+        <button onclick="guardarClientes()"><i class='bx bx-save' ></i> Guardar</button>
+      </div>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -69,7 +73,7 @@
             <th scope="col">Celular</th>
             <th scope="col"><i class='bx bx-edit-alt'></i></th>
             <th scope="col"><i class='bx bx-message-square-x'></i></th>
-          </tr>
+          </tr> 
         </thead>
         <tbody id="cuerpoClientes">
           <!-- <tr>
@@ -114,6 +118,7 @@
   <script src="../assets/js/usuario.js"></script>
   <script src="../assets/js/principal.js"></script>
   <script src="../assets/js/clientes.js"></script>
+  <script src="../assets/js/clientes_agr.js"></script><!-- solo esta hoja-->
   
 
   <!-- VENDORS-->
