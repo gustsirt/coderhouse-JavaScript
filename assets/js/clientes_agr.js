@@ -15,11 +15,6 @@ const datClientes = {
 
 // ? ***************** FUNCIONES *****************
 
-// Guardar Clientes, evento en Hoja Clientes -- Boton Guardar
-function guardarClientes() {
-  localStorage.setItem('clientes', JSON.stringify(clientes))
-}
-
 // Mostrar Arreglo
 function mostrarArreglo() {
   let html = ``
@@ -30,7 +25,7 @@ function mostrarArreglo() {
         <td>${clientes[i].nombre}</td>
         <td>${clientes[i].celular}</td>
         <td><button onclick="irAModificar(${i})"><i class='bx bx-edit-alt'></i></button></td>
-        <td><button><i class='bx bx-message-square-x'></i></button></td>
+        <td><button onclick="eliminar(${i})"><i class='bx bx-message-square-x'></i></button></td>
       </tr>
       `
   }
@@ -48,16 +43,17 @@ function agregarCliente() {
   mostrarArreglo()
 }
 
-// ? ***************** EVENTOS *****************
-// al iniciar de carga los datos por --> clientes.js 
-window.addEventListener('load', () => {
-  mostrarArreglo()
-})
+// ? ***************** FUNC. DE BOTONES *****************
+// Guardar Clientes, evento en Hoja Clientes -- Boton Guardar
+function guardarClientes() {
+  localStorage.setItem('clientes', JSON.stringify(clientes))
+}
 
-/*  Valida:
-      1ro: si ingreso todos los campos --> 2do o advierte
-      2do: si la cadena esta vacia --> 3ro o agrega
-      3ro: si ya existe DNI --> agrega o advierte */
+/* -- Boton Agregar
+  Valida:
+    1ro: si ingreso todos los campos --> 2do o advierte
+    2do: si la cadena esta vacia --> 3ro o agrega
+    3ro: si ya existe DNI --> agrega o advierte */
 nuevoCliente.botAgregar.addEventListener('click', () => {
   if((cDNI.value||false)&&(cNombre.value||false)&&(cCelular.value||false)) { // 1ro -> 2do
       if ((clientes.length??0)==0) {
@@ -79,3 +75,47 @@ nuevoCliente.botAgregar.addEventListener('click', () => {
   }
 })
 
+// ir a modificar  -- Boton irAModificar
+function irAModificar(i) {
+  console.log(i);
+  datClientes.indice = i
+  nuevoCliente.cDNI.value = clientes[i].dni
+  nuevoCliente.cNombre.value = clientes[i].nombre
+  nuevoCliente.cCelular.value = clientes[i].celular
+  nuevoCliente.cDNI.disabled = true
+  nuevoCliente.botAgregar.classList.toggle('ocultar')
+  nuevoCliente.botModif.classList.toggle('ocultar')
+  nuevoCliente.txtAgregar.innerText = "Aqui puedes modificar el cliente "
+}
+
+// Modfica cliente (DNI sigue =) -- Boton Modificar
+nuevoCliente.botModif.addEventListener('click', () => {
+  clientes[datClientes.indice].nombre = nuevoCliente.cNombre.value
+  clientes[datClientes.indice].celular = nuevoCliente.cCelular.value
+  nuevoCliente.cDNI.value = ""
+  nuevoCliente.cNombre.value = ""
+  nuevoCliente.cCelular.value = ""
+  datClientes.indice = -1
+  nuevoCliente.botAgregar.classList.toggle('ocultar')
+  nuevoCliente.botModif.classList.toggle('ocultar')
+  nuevoCliente.txtAgregar.innerText = "Cliente Modificado"
+  nuevoCliente.cDNI.disabled = false
+  mostrarArreglo()
+})
+
+// Elimina Cliente (si se esta modificando no hace nada)
+function eliminar(i) {
+  if (nuevoCliente.cDNI.disabled == false) {
+    nuevoCliente.txtAgregar.innerText = `Cliente ${clientes[i].nombre} Eliminado`
+    clientes.splice(i,1)
+    mostrarArreglo()
+  } else {
+    nuevoCliente.txtAgregar.innerText = `Debes terminar de modificar el Cliente ${clientes[datClientes.indice].nombre}`
+  }
+}
+
+// ? ***************** EVENTOS *****************
+// al iniciar de carga los datos por --> clientes.js 
+window.addEventListener('load', () => {
+  mostrarArreglo()
+})
