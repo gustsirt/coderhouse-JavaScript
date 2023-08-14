@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clientes</title>
   <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
   
   <!-- Librerias -->
@@ -14,24 +13,10 @@
 </head>
 
 <body>
-  <!-- =======  HEADER - NO IMPRIMIBLE ======= -->
+  <!-- =======  HEADER DINAMICO ======= -->
   <header class="header">
-    <div class="titulo1">
-        <a href="../index.html"><img src="../assets/img/logo.jpg" alt="Logo Empresa"></a>
-        <h1>Clientes</h1>
-        <div class="user-header">
-          <p>Usuario:</p>
-          <p id="logUsuario"></p>
-        </div>
-    </div>
-    <nav id="nav" class="nav">
-      <ul>
-        <li><a href="../index.html">Inicio</a></li>
-        <li class="active"><a href="./clientes.html">Clientes</a></li>
-        <li><a href="./operaciones.html">Operaciones</a></li>
-        <li><a href="./pagares.html">Pagare</a></li>
-      </ul>
-    </nav>
+    <div id="hoja-tit" class="titulo1"></div>
+    <nav id="hoja-nav" class="nav"></nav>
   </header>
 
   <!-- ======= MAIN - NO IMPRIMIBLE ======= -->
@@ -90,35 +75,14 @@
     </section>
   </main> <!-- fin main -->
 
-
-
-  <!-- ======= FOOTER - NO IMPRIMIBLE ======= -->
-  <footer class="footer">
-    <div class="container">
-      <p class="title">Sistema X</p>
-      <p class="descrip"></p>
-      <div class="social-links">
-        <a href="https://wa.me/5493541613185?text=Hola.%20Me%20gustaría%20contactarme%20contigo" target="_blank" cclass="">
-          <i class='bx bxl-whatsapp'></i></a>
-        <a href="https://www.facebook.com/gustavoandres.sirtori/" target="_blank" class="">
-          <i class="bx bxl-facebook"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" class="">
-          <i class="bx bxl-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/gustavoandressirtori/" target="_blank" cclass="">
-          <i class="bx bxl-linkedin"></i></a>
-        <a href="mailto:gustavo.sirtori@gmail.com" target="_blank" cclass="">
-          <i class='bx bxl-gmail'></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <span id="copyyear"></span><span class="pstr"> Sirtori Gustavo</span>. Todos los derechos reservados
-      </div>
-      
-    </div>
-  </footer><!-- End Footer -->
+  <!-- ======= FOOTER DINAMICO ======= -->
+  <footer id="hoja-footer" class="footer"></footer>
 
   <!-- SCRIPS -->
+  <script src="../assets/js/0_variables.js"></script>
+  <script src="../assets/js/1_dom.js"></script>
+  <script src="../assets/js/2_historial.js"></script>
   <script src="../assets/js/usuario.js"></script>
-  <script src="../assets/js/principal.js"></script>
   <script src="../assets/js/clientes.js"></script>
   <script src="../assets/js/clientes_agr.js"></script><!-- solo esta hoja-->
   

@@ -12,7 +12,7 @@
 El trabajo consta de reemplazar una serie de planillas que diseñé para una empresa. Donde la misma vende sus productos (autos) en cuotas, las cuales deben ser cobradas, para eso: por un lado se crean los Pagares y por otro hay que hacer seguimiento de dichos cobros (esto solo funciona en Cordoba)
 ```
 
-<p style="color: hotpink"> NOTA: este trabajo esta muy incompleto pero cumple los estandarés para la 3ra entrega y es muy probable que se valla actualizando con nuevas funcionalidades
+<p style="color: hotpink"> NOTA: Se esta diseñando este codigo con el fin de reutilizarlo para proyectos mas profesionales posteriormente
 
 ### <p style="color: cyan"> ESTRUCTURA
 
@@ -22,6 +22,14 @@ El trabajo consta de reemplazar una serie de planillas que diseñé para una emp
 - 4 - **Pagares (pre entrega 2)** --> *Se establecerian al momento definir con el cliente como abonara su producto*
 - 5 - Funciones extras o genericas
 
+FUNCIONES
+
+- 0 - **Variables** --> Se declaran aqui todas la variables genericas
+- 1 - **DOM** --> este Scrip crea por DOM: los metadatos del Head (correspondientes al SEO), todo el Header (incluido Usuario) y el Footer
+- 2 - **Historial** --> aqui se incluirá lo referido al tema
+- 3 - **Generico** --> aqui se incluyen scrip que no vale la pena separar
+- X - **Especificas** --> se tratara de estandirzar segun la función del Scrip
+
 ### <p style="color: yellow"> DETALLE DE LA ESTRUCTURA
 
 ---
@@ -29,16 +37,7 @@ El trabajo consta de reemplazar una serie de planillas que diseñé para una emp
 ### INDEX (login)
 Se busca aqui que la persona se pueda loguear para poder tener los permisos de acceso.
 
-<p style="color: orange">PENDIENTE: No existe boton para desloguearse. Este debria borrar todos los datos almacenados (usuario, clientes, operaciones)
-
-* ***Usuario.js***
-
-Se usa el archivo para el login.<br>
--- Pre define usuarios aceptados en un array de objetos (_solo index_)<br>
--- Al cargar la pagina: se fija si esta logueado previamente, si esta muestra el nombre y sino esta: oculta el nav y como yapa, te manda al index (que no anda en github por eso esta comentada, pero el codigo esta bien, verificado con CoderAsk) (_se aplica a todas las paginas_)<br>
--- Por ultimo tienela funcion del evento del login, donde el usuario se loguea y guarda el dato el localstorage (_solo index_)
-
-<p style="color: hotpink"> Esta es la primer pagina que hice, y me quedó desprolija, debería separar: <> codigo login (solo index) <> codigo verificar usuario (todas las paginas)
+El control de usuario esta definido en el DOM, y el ingreso en ***4_1_index.js***
 
 ---
 

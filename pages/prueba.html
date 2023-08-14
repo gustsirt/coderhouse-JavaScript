@@ -9,11 +9,12 @@
   <!-- Librerias -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> <!-- bootstrap -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- boxicons ico -->
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" /> <!-- grid.js -->
   <link rel="stylesheet" type="text/css" href="../assets/css/styles.css" />
 </head>
 
 <body>
-  <!-- =======  HEADER DINAMICO - NO IMPRIMIBLE ======= -->
+  <!-- =======  HEADER DINAMICO ======= -->
   <header class="header">
     <div id="hoja-tit" class="titulo1"></div>
     <nav id="hoja-nav" class="nav"></nav>
@@ -25,39 +26,21 @@
     <!-- Tabla-->
     <section class="tabla-g tabla-datos d-flex flex-col-center">
       <div> <!-- botones -->
-        <button onclick="guardarOperaciones()"><i class='bx bx-save' ></i> Guardar</button>
       </div>
-      <div class="table-responsive"></div>
-        <table id="porta-tabla" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Cliente</th>
-              <th scope="col">Vehiculo</th>
-              <th scope="col">Dominio</th>
-              <th scope="col"><i class='bx bx-edit-alt'></i></th>
-              <th scope="col"><i class='bx bx-message-square-x'></i></th>
-            </tr> 
-          </thead>
-          <tbody id="cuerpoClientes">
-            <!-- <tr>
-              <th scope="row">1</th>
-              <td>32112345</td>
-              <td>Mark</td>
-              <td>351-3214567</td>
-              <td><input type="button" value="xxx"></td>
-            </tr>  -->
-          </tbody>
-        </table>
-      </div>
+      <button onclick="mostrar()">aaaaaa</button>
+      <div id="porta-tabla"></div>
     </section>
   </main> <!-- fin main -->
 
 
 
-  <!-- ======= FOOTER DINAMICO - NO IMPRIMIBLE ======= -->
+  <!-- ======= FOOTER DINAMICO ======= -->
   <footer id="hoja-footer" class="footer"></footer>
+
+  <!-- VENDORS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script> <!-- grid.js -->
+
 
   <!-- SCRIPS -->
   <script src="../assets/js/0_variables.js"></script>
@@ -65,10 +48,7 @@
   <script src="../assets/js/2_historial.js"></script>
   <script src="../assets/js/usuario.js"></script>
   <script src="../assets/js/clientes.js"></script>
-  <script src="../assets/js/tabla.js"></script>
+  <script src="../assets/js/prueba.js"></script>
 
-
-  <!-- VENDORS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
