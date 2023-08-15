@@ -4,7 +4,7 @@ const hoja = {
   paginas: [
     {
       src: "index.html",
-      lnk: "Inicio",
+      lnk: "Log In",
       tit: "Sistema de Cobros",
       h1: "Sistema de Cobros"
     },
@@ -45,10 +45,11 @@ const hoja = {
 window.addEventListener('load', () => {
 
   // TODO USUARIO evita que accedas a otra pagina (no anda en github)
-  if (page.currentPagePath != "index.html") {
-    console.log("window.location.href = '../index.html'");
-  //  window.location.href = "../index.html"
-  //  break
+  if (usuariologueado < 0) {
+    if (page.currentPagePath != "index.html") {
+      console.log("window.location.href = '../index.html'");
+    //  window.location.href = "../index.html"
+    }
   }
 
   // PAGINAS Define ubicación en array
@@ -69,12 +70,12 @@ window.addEventListener('load', () => {
 
   // HEADER *********************************************
   // USUARIO pre verificación
-  let auxuser = usuariologueado.id >= 0
+  let auxuser = usuariologueado >= 0
   let auxabr 
   let auxusuario
   if (auxuser) {
-    auxabr = usuarios[usuariologueado.id].abr
-    auxusuario = usuarios[usuariologueado.id].usuario
+    auxabr = usuarios[usuariologueado].abr
+    auxusuario = usuarios[usuariologueado].usuario
   } else {
     auxabr = "--"
     auxusuario = "--"

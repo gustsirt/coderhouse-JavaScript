@@ -1,3 +1,9 @@
+// ? ***************** INICIADOR *****************
+
+if (usuariologueado >= 0) {
+  window.location.href = "./pages/clientes.html"
+}
+
 // ? ***************** EVENTOS *****************
 // funcion validarUsuario - ligado a Submit - del formulario en Index
 const verif = document.getElementById('formularioVal')
@@ -11,12 +17,12 @@ verif.addEventListener('submit', (e) => {
     if (regist.usuario === e.target[0].value) {
       if (regist.pass === e.target[1].value ) {
         aux = 1
-        usuariologueado.id = regist.id
+        usuariologueado = regist.id
       }
     }
     // si se logeo manda mensaje y actualiza datos
     if (aux === 1) {
-      localStorage.setItem("user",usuariologueado.id)
+      localStorage.setItem("user",usuariologueado)
       location.reload()
     }
     // si no se logeo manda mensaje
