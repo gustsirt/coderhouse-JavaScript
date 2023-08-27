@@ -8,24 +8,25 @@ const page = {
 }
 // correige error de un simbolo ? al final
 page.currentPagePath = page.currentPagePath.split("?")[0]
+if(page.currentPagePath.indexOf('.html') == -1) {page.currentPagePath = "index.html"}
 
 // ? USUARIOS
 
 // Aceptados (Suele estar en el BackEnd)
-usuarios =[
+usuarios = [
   {
-    id: 0,
+    id: 1,
     abr: "AD",
     usuario: "admin",
     pass: "admin"
   },
   {
-    id: 1,
+    id: 2,
     abr: "I",
     usuario: "invitado",
     pass: " "
-  },
-]
+  }]
+
 let usuariologueado = localStorage.getItem('user') ?? -1 // si esta registrado debe ser >= 0
 
 // ? DATOS
@@ -34,11 +35,5 @@ let usuariologueado = localStorage.getItem('user') ?? -1 // si esta registrado d
 
 const bd = {
   clientes: JSON.parse(localStorage.getItem('bdcli')) || [],
-  operaciones: JSON.parse(localStorage.getItem('bdope')) || []
+  operaciones: JSON.parse(localStorage.getItem('bdope')) || [],
 }
-
-  console.log(bd);
-
-
-
-

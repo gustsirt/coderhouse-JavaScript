@@ -19,7 +19,7 @@ $f-body-font-size-p: 10pt;
 
 h1, h2, h3, h4{ font-family: $f-title, sans-serif; }
 
-p, li, a, label, input, button {
+p, li, a, label, input, button, select {
   font-family: $f-general, sans-serif;
   font-size: $f-body-font-size;
   color: $c-negro;

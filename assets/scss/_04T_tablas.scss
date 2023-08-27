@@ -7,7 +7,6 @@
 .tabla-g{
   @extend .flex-col-center;
 
-
   background-color: $clig2;
   padding: 2em;
   margin: 1.5em;
@@ -19,12 +18,15 @@
     justify-content: space-between;
     div {
       @extend .flex-col-center;
-
-      button {
-        width: 100px;
-        border: none;
-      }
     }
+  }
+  button {
+    width: 80px;
+    border: none;
+    //margin: 0 auto;
+  }
+  select {
+    width: 176px;
   }
   p {
     font-style: italic;
@@ -46,6 +48,17 @@
         button:hover {
           color: $cligt;
           background-color: $color;
+        }
+        button:disabled {
+          color: $cligt;
+          background-color: $clig2;
+        }
+        min-width: 20px;
+        //width: 100%;
+        max-width: 120px;
+        input {
+          width: 100%;
+          min-width: 30px;
         }
       }
     }

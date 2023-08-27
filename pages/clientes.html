@@ -38,56 +38,28 @@
           <label for="cCelular">Celular:</label>
           <input type="text" id="cCelular">
         </div>
-        <div>
-          <button id="agregarCliente"><i class='bx bx-add-to-queue'></i> Agregar</button>
-          <button id="modificarCliente" class="ocultar"><i class='bx bx-edit-alt'></i> Modificar</button>
-        </div>
       </div>
+      <button id="agregarDato"><i class='bx bx-add-to-queue'></i> Agregar</button>
       <p id="agregarMensaje"></p>
     </section>
 
     <!-- Tabla -->
-    <section class="tabla-g tabla-datos d-flex flex-col-center">
-      <div> <!-- botones -->
-        <button onclick="guardarClientes()"><i class='bx bx-save' ></i> Guardar</button>
-      </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">DNI</th>
-            <th scope="col">Apellido y Nombre</th>
-            <th scope="col">Celular</th>
-            <th scope="col"><i class='bx bx-edit-alt'></i></th>
-            <th scope="col"><i class='bx bx-message-square-x'></i></th>
-          </tr> 
-        </thead>
-        <tbody id="cuerpoClientes">
-          <!-- <tr>
-            <th scope="row">1</th>
-            <td>32112345</td>
-            <td>Mark</td>
-            <td>351-3214567</td>
-            <td><input type="button" value="xxx"></td>
-          </tr>  -->
-        </tbody>
-      </table>
+    <section id="contenedorbdcli" class="tabla-g tabla-datos d-flex flex-col-center">
     </section>
   </main> <!-- fin main -->
 
   <!-- ======= FOOTER DINAMICO ======= -->
   <footer id="hoja-footer" class="footer"></footer>
 
-  <!-- SCRIPS -->
-  <script src="../assets/js/0_variables.js"></script>
-  <script src="../assets/js/1_dom.js"></script>
-  <script src="../assets/js/2_historial.js"></script>
-  <script src="../assets/js/usuario.js"></script>
-  <script src="../assets/js/clientes.js"></script>
-  <script src="../assets/js/clientes_agr.js"></script><!-- solo esta hoja-->
-  
-
   <!-- VENDORS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> <!-- Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Sweet Alerts 2-->
+
+    <!-- SCRIPS -->
+    <script src="../assets/js/0_variables.js"></script>
+    <script src="../assets/js/0_clase_tabla_local.js"></script>
+    <script src="../assets/js/1_dom.js"></script>
+    <script src="../assets/js/2_historial.js"></script>
+    <script src="../assets/js/4_2_cliente.js"></script>
 </body>
 </html>

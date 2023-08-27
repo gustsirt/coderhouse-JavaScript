@@ -1,0 +1,115 @@
+.claseTabla{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: $cligt;
+  padding: 1em;
+  margin: 1.5em;
+  border-radius: 30px;
+
+  input, select {
+    width: fit-content;
+    //width: 176px;
+  }
+  button {
+    width: 80px;
+    border: none;
+    //margin: 0 auto;
+  }
+
+  .titulo {
+    font-size: $f-h2-size;
+  }
+  .filtros {
+    width: 100%;
+    .divTituloFiltros{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      h3 {
+        font-size: $f-h4-size;
+      }
+      .div{
+        display: flex;
+        justify-content:flex-end;
+      }
+    }
+    .divFiltros {
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      align-items: end;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input, select {
+          min-width: 20px;
+          max-width: 100px;
+        }
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .mensajero {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+  }
+  .cabecera {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+  .tabla {
+    width: 100%;
+    background-color: $clig2;
+    margin: 0;
+
+    thead {
+      margin: 0;
+      background-color: $copcn;
+      color: $cligt;
+    }
+
+    tbody {
+      .par {
+        background-color: $c-gris2;
+      }
+      td {
+        button {
+          width: 1.8em;
+          height: 1.8em;
+          border-radius: 50%;
+          border: none;
+          background-color: $cligt;
+        }
+        button:hover {
+          color: $cligt;
+          background-color: $color;
+        }
+        button:disabled {
+          color: $cligt;
+          background-color: $clig2;
+        }
+        min-width: 20px;
+        //width: 100%;
+        max-width: 120px;
+        input {
+          width: 100%;
+          min-width: 30px;
+        }
+      }
+    }
+  }
+}
