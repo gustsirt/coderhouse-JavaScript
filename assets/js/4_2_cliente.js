@@ -4,8 +4,7 @@ let clientesAPI = new TablaAPI({
   apis: {
     base: {
       url: "https://64e161e950713530432d148d.mockapi.io/Clientes",
-      id: "dni",
-      filtros: "" },
+      id: "dni"},
   },
   mapeoColumnas: [
     { api:'base', key:'id', type: 'text', col:'ID'},
