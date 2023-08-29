@@ -21,31 +21,7 @@
 
   <!-- ======= MAIN - NO IMPRIMIBLE ======= -->
   <main class="container main">
-
-    <!-- Titulo y Agregar datos-->
-    <section class="tabla-g">
-      <h2>Agregar datos</h2>
-      <div class="agregar-datos">
-        <div>
-          <label for="cDNI">DNI:</label>
-          <input type="number" id="cDNI">
-        </div>
-        <div>
-          <label for="cNombre">Apellido y Nombre:</label>
-          <input type="text" id="cNombre">
-        </div>
-        <div>
-          <label for="cCelular">Celular:</label>
-          <input type="text" id="cCelular">
-        </div>
-      </div>
-      <button id="agregarDato"><i class='bx bx-add-to-queue'></i> Agregar</button>
-      <p id="agregarMensaje"></p>
-    </section>
-
-    <!-- Tabla -->
-    <section id="contenedorbdcli" class="tabla-g tabla-datos d-flex flex-col-center">
-    </section>
+    <section id="contenedorbdcli" class="claseTabla"></section>
   </main> <!-- fin main -->
 
   <!-- ======= FOOTER DINAMICO ======= -->
@@ -57,9 +33,8 @@
 
     <!-- SCRIPS -->
     <script src="../assets/js/0_variables.js"></script>
-    <script src="../assets/js/0_clase_tabla_local.js"></script>
+    <script src="../assets/js/0_clase_tabla_API.js"></script>
     <script src="../assets/js/1_dom.js"></script>
-    <script src="../assets/js/2_historial.js"></script>
     <script src="../assets/js/4_2_cliente.js"></script>
 </body>
 </html>

@@ -175,6 +175,7 @@ class TablaAPI {
     })
     this.divF.innerHTML+= auxstring
     this.botoneraF.innerHTML=`<button onclick="${this.instancia}.agregarDato()">Agregar</button>`
+    this.botoneraF.innerHTML+=`<button onclick="${this.instancia}.ocultarFiltros()">Cancelar</button>`
   }
   verDatosSelectAD(idSelect, api) {
     this.mapeoColumnas.forEach((col) => {
@@ -183,6 +184,11 @@ class TablaAPI {
         pAEditar.innerHTML = this.datos[api]['id'+idSelect.value][col.key]
       }
     })
+  }
+  ocultarFiltros() {
+    this.tituloF.innerHTML=""
+    this.botoneraF.innerHTML=""
+    this.divF.innerHTML=""
   }
 
   // CABECERA
@@ -195,7 +201,6 @@ class TablaAPI {
   mostrarEnContenedor () {
     this.mostrarCabecera()
     this.mostrarCuerpo()
-    //this.verDatos();
   }
   mostrarCabecera() {
     let auxstring = `<tr>`
@@ -299,7 +304,7 @@ class TablaAPI {
       }
     }
   }
-  verDatos(){
+  verDatos(){ // TODO
     console.log(this.mapeoColumnas);
     console.log(this.datos);
     //console.log(this.datos['base']['id1']);
@@ -308,6 +313,8 @@ class TablaAPI {
   // ? Modificacion de Datos
   agregarDato() {
     let verificacion = true
+    let permitir = true
+    let permitirCol = ""
     const objetoAAgregar = {}
     this.mapeoColumnas.forEach((col) => {
       if (col.key != 'id' && col.api == "base") {
@@ -320,26 +327,48 @@ class TablaAPI {
       this.mensajero.innerHTML="Para poder agregar un dato debes haber completado todos los campos"
       setTimeout( () => {
         this.mensajero.innerHTML = ""
-      },3000)
+      },5000)
     } else {
-      fetch(this.apis.base.url, {
-        method: 'POST',
-        headers: {'content-type':'application/json'},
-        body: JSON.stringify(objetoAAgregar)
+      this.mapeoColumnas.forEach((colUnic) => {
+        if(colUnic.unico) {
+          const valorUnico = document.getElementById(`ad${colUnic.col}`).value
+          for (const fila in this.datos.base) {
+            if(valorUnico == this.datos.base[fila][colUnic.key]) {
+              permitir = false;
+              permitirCol = colUnic.col
+              break
+            }
+          }
+        }
       })
-        .then (() => {
-          this.mensajero.innerHTML="Dato agregado"
-          setTimeout( () => {
-            this.mensajero.innerHTML = ""
-          },3000)
+      if(permitir == false) {
+        this.mensajero.innerHTML=`El Campo ${permitirCol} ya fue cargado. Pruebe cambiando el contenido de: ${permitirCol}`
+        setTimeout( () => {
+        this.mensajero.innerHTML = ""
+        },5000)
+      } else {
+        console.log("Dato Agregado");
+        fetch(this.apis.base.url, {
+          method: 'POST',
+          headers: {'content-type':'application/json'},
+          body: JSON.stringify(objetoAAgregar)
         })
-        .catch(() => {
-          this.mensajero.innerHTML="Hubo un error. Intenta de nuevo"
-          this.mostrarCuerpo()
-          setTimeout( () => {
-            this.mensajero.innerHTML = ""
-          },3000)
+          .then (() => {
+            this.ocultarFiltros()
+            this.obtenerDatos()
+            this.mensajero.innerHTML="Dato agregado"
+            setTimeout( () => {
+              this.mensajero.innerHTML = ""
+            },3000)
+          })
+          .catch(() => {
+            this.mensajero.innerHTML="Hubo un error. Intenta de nuevo"
+            this.mostrarCuerpo()
+            setTimeout( () => {
+              this.mensajero.innerHTML = ""
+            },3000)
         })
+      }
     }    
   }
   iniciaModificarDato(row) {
@@ -373,9 +402,6 @@ class TablaAPI {
     let urlput = `${this.apis[api]['url']}/`
     let traerID
 
-    console.log(dato);
-    console.log(url);
-
     // filtra el dato con la referencia conocida
     let fetchPromises = fetch(url)
     .then((res) => res.json())
@@ -396,7 +422,7 @@ class TablaAPI {
         this.datoAModificar = ""
         this.agregarEli = this.agregarEliTemp
         this.agregarModX = false
-        this.mostrarEnContenedor();
+        this.obtenerDatos();
       })
       .catch(() => {
         Swal.fire({
@@ -418,18 +444,43 @@ class TablaAPI {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.eliminarDato(row)
+        this.eliminarDato('base', row)
       }
     })
   }
   
-  eliminarDato(row) {
-    console.log("me falta terminar esto");
-    /*
-    this.datos.splice(row, 1)
-    this.guadarDatos();
-    this.mostrarEnContenedor();
-    */
+  eliminarDato(api, row) {
+    let ref = row.split('id')[1]
+    let url = `${this.apis[api]['url']}?${this.apis[api]['id']}=${ref}`
+    let urlput = `${this.apis[api]['url']}/`
+    let traerID
+
+    // filtra el dato con la referencia conocida
+    let fetchPromises = fetch(url)
+    .then((res) => res.json())
+    // aqui obtengo id
+    .then((dat) => traerID = dat[0].id)
+    .then(() => {
+      fetch(`${urlput}${traerID}`, {
+        method: 'DELETE'
+      })
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Dato Eliminado!'
+        })
+        this.dato
+        this.ocultarFiltros()
+        this.obtenerDatos();
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Prueba de nuevo',
+        })
+      })
+    })
   }
 
   // TODO -> funcion ordenar

@@ -63,13 +63,14 @@
     text-align: center;
     font-style: italic;
     font-weight: bold;
+    background-color: $clig2;
+    margin-bottom: 1em;
   }
   .cabecera {
     width: 100%;
     display: flex;
     justify-content: end;
     margin-bottom: 0.5em;
-    margin-top: 1em;
   }
   .tabla {
     width: 100%;
