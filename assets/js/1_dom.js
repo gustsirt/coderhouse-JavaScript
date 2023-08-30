@@ -27,10 +27,11 @@ const hoja = {
       h1: "Pagare Imprimible"
     },
     {
-      src: "prueba.html",
-      lnk: "Prueba",
-      tit: "Sistema de Cobros | Pruebas",
-      h1: "Pruebas"
+      src: "operacion.html",
+      lnk: "Operación",
+      tit: "Sistema de Cobros | Operación",
+      h1: "Operaciones",
+      nsv: true
     }
   ],
   activa: 0,
@@ -41,14 +42,13 @@ const hoja = {
   secFooter: d.getElementById('hoja-footer'),
 }
 
-// - INICIA: Usuario - Head-Titulo, Header y Footer
+// - INICIA: Usuario - Head - Titulo, Header y Footer
 window.addEventListener('load', () => {
 
   // TODO USUARIO evita que accedas a otra pagina (no anda en github)
   if (usuariologueado < 0) {
     if (page.currentPagePath != "index.html") {
-      console.log("window.location.href = '../index.html'");
-    //  window.location.href = "../index.html"
+      console.log("window.location.href = '../index.html'"); // este codigo no estaria consologeado, pero github da error
     }
   }
 
@@ -100,13 +100,14 @@ window.addEventListener('load', () => {
     let preNav = `<ul>
       <li><a href="${hoja.conector}./${hoja.paginas[0].src}">${hoja.paginas[0].lnk}</a></li>`
     for (let i = 1; i < hoja.paginas.length; i++) {
+      if (hoja.paginas[i].nsv ) {continue}
       preNav += `<li><a href="${auxconec}${hoja.paginas[i].src}">${hoja.paginas[i].lnk}</a></li>`
     }
     preNav +=`</ul>`
     hoja.secNav.innerHTML = preNav
 
     // agrega clase active
-    hoja.secNav.children[0].children[hoja.ubicacion].className = "active"
+    if (!hoja.paginas[hoja.ubicacion].nsv) { hoja.secNav.children[0].children[hoja.ubicacion].className = "active" }
   }
 
   // FOOTER *********************************************

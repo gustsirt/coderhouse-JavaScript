@@ -20,3 +20,5 @@ let operacionesAPI = new TablaAPI({
   ]
 })
 operacionesAPI.titulo.innerHTML="Operaciones"
+operacionesAPI.agregarLnk = true
+operacionesAPI.link = "./operacion.html"

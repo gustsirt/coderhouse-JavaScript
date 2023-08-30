@@ -5,29 +5,21 @@ class TablaAPI {
     // ? Datos base
     this.instancia = data.instancia
 
-    this.nombre = data.nombre || ""// ID del contedor, se usa para localstorage y contenedor
-    this.apis = data.apis || { // url de los datos
+    this.nombre = data.nombre || ""
+    this.apis = data.apis || {
       base: {
         url: "",
         filtros: "" } }
-    this.datos = {} /* tendra este formato = {
-      base: {
-        idkey1: { datos },
-        idkey2: { datos }
-      },
-      no bases: {
-        idkey1: { datos },
-        idkey2: { datos }
-      }
-    } --> eso implica que ase accede this.datos[][]*/
-    this.mapeoColumnas = data.mapeoColumnas || [] // mapeo de columnas con su Nombre en API y Ordenadas para mostrar
+    this.datos = {}
+    this.mapeoColumnas = data.mapeoColumnas || []
 
-    this.idAdvertencias = document.getElementById(data.idAdvertencias) || false
-    this.agregarBot = true // crea boton para agregar datos
-    this.agregarMod = true // le agrega la columna con el boton para modificar el dato
-    this.agregarModX = false // le agrega la columna con el boton para modificar el dato
-    this.agregarEli = true // le agrega la columna Eliminar Fila
-    this.agregarEliTemp = false // guarda el dato anterior cuando se esta Modificando
+    this.agregarBot = true
+    this.agregarMod = true
+    this.agregarModX = false
+    this.agregarEli = true
+    this.agregarLnk = false
+    this.link =""
+    this.agregarEliTemp = false
     this.datoAModificar = ""
     
     // Iniciador (inicia estructura -> busca datos -> inicia Columnas -> Visualiza)
@@ -97,7 +89,7 @@ class TablaAPI {
         })
         this.datos[k] = kk
       })
-      .catch((error) => {
+      .catch(() => {
         this.mensajero.innerHTML='<p>Hubo un problema con los datos. Vuelva a cargar la pagina por favor!</p><button onclick="location.reload()"><i class="bx bx-refresh">Actualizar</i></button>'
       })
     })
@@ -209,13 +201,11 @@ class TablaAPI {
     this.mapeoColumnas.forEach( (col) => {
       col.nsv? "" :  auxstring += `<th>${col.col}</th>` 
     });
-    // opcion: agregarMod (columna) MODIFICAR
     if (this.agregarMod) { auxstring += `<th><i class='bx bx-edit-alt'></i></th>` }
     if (this.agregarModX) { auxstring += `<th><i class='bx bx-x'></i></th>` }
-
-    // opcion: agregarEli (columna) ELIMINAR
     if (this.agregarEli) { auxstring += `<th><i class='bx bx-message-square-x'></i></th>` }
-
+    if (this.agregarLnk) { auxstring += `<th><i class='bx bx-link'></i></th>` }
+    
     // finaliza
     auxstring += `</tr>`
     this.thead.innerHTML = auxstring
@@ -290,6 +280,9 @@ class TablaAPI {
         auxstring += `<td><button onclick="${this.instancia}.cancelaModificarDato()"><i class='bx bx-x'></i></button></td>`
       }
     }
+    if (this.agregarLnk) {
+      auxstring += `<td><a href="${this.link}?id=${row}"><i class='bx bx-link'></i></a></td>`
+    }
 
     return auxstring
   }
@@ -303,11 +296,6 @@ class TablaAPI {
         seleccion[i-cc].innerHTML = this.datos[api]['id'+nuevovalor][this.mapeoColumnas[i].key]
       }
     }
-  }
-  verDatos(){ // TODO
-    console.log(this.mapeoColumnas);
-    console.log(this.datos);
-    //console.log(this.datos['base']['id1']);
   }
 
   // ? Modificacion de Datos
@@ -347,7 +335,6 @@ class TablaAPI {
         this.mensajero.innerHTML = ""
         },5000)
       } else {
-        console.log("Dato Agregado");
         fetch(this.apis.base.url, {
           method: 'POST',
           headers: {'content-type':'application/json'},
@@ -456,37 +443,33 @@ class TablaAPI {
     let traerID
 
     // filtra el dato con la referencia conocida
-    let fetchPromises = fetch(url)
-    .then((res) => res.json())
-    // aqui obtengo id
-    .then((dat) => traerID = dat[0].id)
-    .then(() => {
-      fetch(`${urlput}${traerID}`, {
-        method: 'DELETE'
-      })
+    fetch(url)
+      .then((res) => res.json())
+      // aqui obtengo id
+      .then((dat) => traerID = dat[0].id)
       .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Dato Eliminado!'
+        fetch(`${urlput}${traerID}`, {
+          method: 'DELETE'
         })
-        this.dato
-        this.ocultarFiltros()
-        this.obtenerDatos();
-      })
-      .catch(() => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Prueba de nuevo',
+        .then(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Dato Eliminado!'
+          })
+          this.dato
+          this.ocultarFiltros()
+          this.obtenerDatos();
         })
-      })
+        .catch(() => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Prueba de nuevo',
+          })
+        })
     })
   }
 
   // TODO -> funcion ordenar
   // TODO -> funcion filtrar
 }
-
-
-
-

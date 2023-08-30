@@ -9,12 +9,11 @@
   <!-- Librerias -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> <!-- bootstrap -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- boxicons ico -->
-  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" /> <!-- grid.js -->
   <link rel="stylesheet" type="text/css" href="../assets/css/styles.css" />
 </head>
 
 <body>
-  <!-- =======  HEADER DINAMICO ======= -->
+  <!-- =======  HEADER DINAMICO - NO IMPRIMIBLE ======= -->
   <header class="header">
     <div id="hoja-tit" class="titulo1"></div>
     <nav id="hoja-nav" class="nav"></nav>
@@ -22,30 +21,21 @@
 
   <!-- ======= MAIN - NO IMPRIMIBLE ======= -->
   <main class="container main">
-
-    <!-- Tabla-->
-    <section class="tabla-g tabla-datos d-flex flex-col-center">
-      <div> <!-- botones -->
-      </div>
-      <button onclick="mostrar()">aaaaaa</button>
-      <div id="porta-tabla"></div>
-    </section>
+    <section id="contenedorbase" class="claseTabla"></section>
   </main> <!-- fin main -->
 
-
-
-  <!-- ======= FOOTER DINAMICO ======= -->
+  <!-- ======= FOOTER DINAMICO - NO IMPRIMIBLE ======= -->
   <footer id="hoja-footer" class="footer"></footer>
 
   <!-- VENDORS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script> <!-- grid.js -->
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> <!-- Bootstrap-->
 
   <!-- SCRIPS -->
   <script src="../assets/js/0_variables.js"></script>
+  <script src="../assets/js/0_clase_tabla_API.js"></script>
   <script src="../assets/js/1_dom.js"></script>
-  <script src="../assets/js/prueba.js"></script>
+  <script src="../assets/js/4_4_operacion.js"></script>
+
 
 </body>
 </html>

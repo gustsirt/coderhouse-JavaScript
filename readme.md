@@ -145,9 +145,11 @@ A continuacion detallo el Constructor: como parametro se pasa un objeto con los 
 
   ATRIBUTOS OPCIONALES
   * `.titulo.innerHTML="TITULO DE LA TABLA"`
-  * `.agregarBot = true` --> crea boton para agregar datos
-  * `.agregarMod = true` --> le agrega la columna con el boton para modificar el dato
-  * `.agregarEli = true` --> le agrega la columna Eliminar Fila
+  * `.agregarBot = true` --> agrega o oculta boton para agregar datos
+  * `.agregarMod = true` --> agrega o oculta la columna con el boton para modificar el dato
+  * `.agregarEli = true` --> agrega o oculta la columna Eliminar Fila
+  * `.agregarLnk = true` --> agrega o oculta la columna con un link dinamico segun id renglon
+  * `.link =""` --> en caso de marcar opcion anterior se debe pasar como dato la url del link (no funciona con index)
 
 EJEMPLO CONSTRUCTOR:
 
