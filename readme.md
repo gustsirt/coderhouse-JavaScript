@@ -7,6 +7,8 @@
 * Comisión: 55290 --- JavaScript
 * Tutor: Marco Pérez
 
+** Para poder Ingresar usuario: admin y pass: admin
+
 ---
 ```ssh
 El trabajo consta de reemplazar una serie de planillas que diseñé para una empresa. Donde la misma vende sus productos (autos) en cuotas, las cuales deben ser cobradas, para eso: por un lado se crean los Pagares y por otro hay que hacer seguimiento de dichos cobros (esto solo funciona en Cordoba)
